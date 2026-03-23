@@ -73,11 +73,11 @@ for model_name, config in models.items():
     with mlflow.start_run(run_name=model_name):
         grid_search = GridSearchCV(config["model"], config["params"], cv=3, scoring='accuracy', n_jobs=-1)
         grid_search.fit(X_train, y_train)
-        
+
         best_estimator = grid_search.best_estimator_
         y_pred = best_estimator.predict(X_test)
         y_pred_proba = best_estimator.predict_proba(X_test)[:, 1]
-        
+
         accuracy = accuracy_score(y_test, y_pred)
         mlflow.log_params(grid_search.best_params_)
         mlflow.log_metric("accuracy", accuracy)
@@ -85,9 +85,9 @@ for model_name, config in models.items():
         mlflow.log_metric("recall", recall_score(y_test, y_pred))
         mlflow.log_metric("f1_score", f1_score(y_test, y_pred))
         mlflow.sklearn.log_model(best_estimator, model_name)
-        
+
         print(f"{model_name} Accuracy: {accuracy:.4f}")
-        
+
         if accuracy > best_accuracy:
             best_accuracy = accuracy
             best_model = best_estimator

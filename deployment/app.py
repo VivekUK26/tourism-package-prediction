@@ -72,26 +72,26 @@ if st.sidebar.button("Predict", type="primary"):
         'Designation': [designation],
         'MonthlyIncome': [monthly_income]
     })
-    
+
     # Encode categorical variables
     categorical_cols = ['TypeofContact', 'Occupation', 'Gender', 'ProductPitched', 'MaritalStatus', 'Designation']
     for col in categorical_cols:
         if col in label_encoders:
             input_data[col] = label_encoders[col].transform(input_data[col])
-    
+
     # Make prediction
     prediction = model.predict(input_data)[0]
     probability = model.predict_proba(input_data)[0]
-    
+
     # Display result
     st.markdown("## Prediction Result")
-    
+
     if prediction == 1:
         st.success("The customer is likely to PURCHASE the Wellness Tourism Package!")
         st.balloons()
     else:
         st.warning("The customer is NOT likely to purchase the package.")
-    
+
     # Display probabilities
     st.markdown("### Prediction Probabilities")
     col1, col2 = st.columns(2)
@@ -99,7 +99,7 @@ if st.sidebar.button("Predict", type="primary"):
         st.metric("Not Purchase", f"{probability[0]*100:.1f}%")
     with col2:
         st.metric("Purchase", f"{probability[1]*100:.1f}%")
-    
+
     # Show input summary
     st.markdown("---")
     st.markdown("### Input Summary")
