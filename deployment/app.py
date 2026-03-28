@@ -3,10 +3,8 @@ import pandas as pd
 import joblib
 from huggingface_hub import hf_hub_download
 
-# ============================================
-# IMPORTANT: Change this to your HF username
-# ============================================
-HF_USERNAME = "AiRemastered"  # <-- YOUR HUGGING FACE USERNAME
+
+HF_USERNAME = "AiRemastered"  # MY HUGGING FACE USERNAME
 
 MODEL_REPO = f"{HF_USERNAME}/tourism-package-model"
 

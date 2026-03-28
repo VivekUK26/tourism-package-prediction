@@ -11,7 +11,7 @@ login(token=os.environ.get("HF_TOKEN"))
 api = HfApi()
 
 # Configuration
-HF_USERNAME = "AiRemastered"  # Change this to your HF username
+HF_USERNAME = "AiRemastered"  
 DATASET_REPO = f"{HF_USERNAME}/tourism-package-prediction"
 
 # Create dataset repository
